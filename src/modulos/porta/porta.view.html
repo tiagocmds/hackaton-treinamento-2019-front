@@ -1,0 +1,45 @@
+<div class="jumbotron">
+    <h1>Hello, {{vm.name}}</h1>
+  
+    <div class="row">
+      <input class="form-control" type="text" ng-model="busca" placeholder="digite a cor da porta">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Porta</th>
+            <th scope="col">Chave</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat='porta in vm.portas | filter:busca'>
+            <tr>
+              <td><b>{{$index+1}}</b></td>
+              <td>{{porta.cor}}</td>
+              <td>
+                {{porta.chaves[0].codigo}},
+                {{porta.chaves[1].codigo}},
+                {{porta.chaves[2].codigo}},
+                {{porta.chaves[3].codigo}},
+                {{porta.chaves[4].codigo}},
+              </td>
+              <td>
+                <button class="btn btn-danger" ng-click="excluir(porta.id)">Excluir</button>
+              </td>
+              <td>
+                  <form ng-submit="salvarChave(porta, chave)">
+                      <input ng-model="chave.codigo" placeholder="codigo da chave">
+                <button class="btn btn-success" type="submit">Adicionar Chave</button>
+                </form>
+              </td>
+              <td>
+                <form ng-submit="editar(edicao, porta)">
+                  <input ng-model="edicao.cor" placeholder="Digite a cor desejada"> 
+              <button class="btn btn-warning" type="submit">EDITAR</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" ui-sref="novaPorta">Nova Porta</span></a>
+    </div>
+  </div>
